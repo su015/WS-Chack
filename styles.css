@@ -1,0 +1,86 @@
+/* GENERAL */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #222;
+}
+a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+/* HEADER */
+.header {
+    background: #000;
+    color: #fff;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav a {
+    margin-left: 20px;
+    color: #fff;
+}
+
+/* HERO */
+.hero {
+    background: #111;
+    color: #fff;
+    text-align: center;
+    padding: 60px 20px;
+}
+.hero h1 {
+    font-size: 2.5em;
+}
+
+/* PRODUCTS */
+.products-section {
+    padding: 40px 20px;
+    text-align: center;
+}
+.products-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+.product-card {
+    width: 200px;
+    border: 1px solid #000000;
+    padding: 15px;
+    border-radius: 8px;
+}
+.product-card img {
+    width: 100%;
+}
+
+/* REVIEWS */
+.reviews-section {
+    background: #f7f7f7;
+    padding: 30px 20px;
+}
+.review {
+    margin-bottom: 15px;
+}
+
+/* TUTORIALS */
+.tutorials-section {
+    padding: 30px 20px;
+}
+
+/* TERMS */
+.terms-section {
+    background: #fafafa;
+    padding: 30px 20px;
+}
+
+/* FOOTER */
+.footer {
+    text-align: center;
+    font-size: 14px;
+    padding: 15px;
+    background: #000;
+    color: #fff;
+}
