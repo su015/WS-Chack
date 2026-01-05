@@ -1,0 +1,263 @@
+/* =========================
+   ROOT VARIABLES
+========================= */
+:root {
+    --nebula-purple: #a855f7;
+    --nebula-pink: #ec4899;
+    --nebula-cyan: #22d3ee;
+    --nebula-dark: #020617;
+    --nebula-card: #0b0f1a;
+}
+
+/* =========================
+   RESET
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* removes image bottom gap */
+}
+
+/* =========================
+   BASE
+========================= */
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #fff;
+    background: linear-gradient(
+        180deg,
+        #020617 0%,
+        #020617 40%,
+        #000000 100%
+    );
+}
+
+/* =========================
+   HEADER
+========================= */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 16px auto;
+    padding: 16px 32px;
+    max-width: 1200px;
+
+    background: linear-gradient(
+        135deg,
+        rgba(20,10,40,0.8),
+        rgba(10,5,25,0.9),
+        rgba(2,6,23,0.95)
+    );
+
+    backdrop-filter: blur(14px);
+    border-radius: 20px;
+    border: 1px solid rgba(168,85,247,0.25);
+
+    box-shadow:
+        0 0 35px rgba(168,85,247,0.4),
+        inset 0 0 20px rgba(0,0,0,0.6);
+
+    position: sticky;
+    top: 12px;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* NAV */
+.nav {
+    display: flex;
+    gap: 20px;
+}
+
+.nav a {
+    text-decoration: none;
+    font-weight: 500;
+    color: var(--nebula-purple);
+    padding: 6px 14px;
+    border-radius: 12px;
+}
+
+.nav a:hover {
+    color: #3b0b57;
+    background: linear-gradient(
+        90deg,
+        var(--nebula-purple),
+        var(--nebula-pink)
+    );
+    box-shadow:
+        0 0 14px rgba(236,72,153,0.8),
+        0 0 25px rgba(168,85,247,0.6);
+}
+
+/* =========================
+   HERO
+========================= */
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.hero h1 {
+    font-size: clamp(28px, 5vw, 44px);
+}
+
+.hero p {
+    color: var(--nebula-cyan);
+    margin-top: 10px;
+}
+
+/* =========================
+   PRODUCTS SECTION
+========================= */
+.products-section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.products-section h2 {
+    margin-bottom: 40px;
+}
+
+/* RESPONSIVE GRID */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    align-items: start; /* 🔥 prevents stretch bugs */
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* PRODUCT LINK */
+.product-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* PRODUCT CARD */
+.product-card {
+    background: linear-gradient(
+        180deg,
+        rgba(15,23,42,0.95),
+        rgba(2,6,23,1)
+    );
+
+    border-radius: 18px;
+    padding: 16px;
+    border: 1px solid rgba(168,85,247,0.25);
+    box-shadow: 0 0 22px rgba(0,0,0,0.6);
+
+    position: relative;
+    overflow: hidden;
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* IMAGE (NO CROP, NO GAP) */
+.product-card img {
+    border-radius: 14px;
+}
+
+/* GLOW OVERLAY */
+.product-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at top,
+        rgba(168,85,247,0.25),
+        transparent 60%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* HOVER */
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow:
+        0 0 32px rgba(168,85,247,0.7),
+        0 0 60px rgba(236,72,153,0.35);
+}
+
+.product-card:hover::before {
+    opacity: 1;
+}
+
+/* TEXT */
+.product-text {
+    margin-top: 14px;
+    text-align: left;
+}
+
+.product-title {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.product-price {
+    font-size: 14px;
+    font-weight: 600;
+
+    background: linear-gradient(
+        90deg,
+        var(--nebula-purple),
+        var(--nebula-pink)
+    );
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    text-shadow: 0 0 8px rgba(168,85,247,0.6);
+}
+
+/* =========================
+   REVIEWS
+========================= */
+.reviews-section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.review {
+    margin-top: 10px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+.footer {
+    margin-top: 60px;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    background: #000;
+    color: #9ca3af;
+}
+
+/* =========================
+   MOBILE NAV FIX
+========================= */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px;
+    }
+
+    .nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
