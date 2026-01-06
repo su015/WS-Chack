@@ -10,7 +10,10 @@
 
 <!-- HEADER -->
 <header class="header">
-    <div class="logo">Delta Market</div>
+    <div class="logo">
+    <img src="../logo.png" alt="Delta Market Logo" class="logo-img">
+    <span>Delta Market</span>
+</div>
     <nav class="nav">
         <a href="../index.html">Home</a>
         <a href="../tutorials.html">Tutorials</a>
@@ -33,7 +36,24 @@
             <span class="badge">Featured</span>
         </div>
 
-        <div class="price">₹150 – $2.5</div>
+        <div class="price" id="priceDisplay">₹150 – $2.5</div>
+
+
+<!-- DURATION SELECTOR -->
+<div class="duration-selector">
+    <button class="duration-btn active"
+            data-price="₹150 – $2.5"
+            data-label="Buy 1 Year via Instagram">
+        1 Year
+    </button>
+
+    <button class="duration-btn"
+            data-price="₹40 – $0.7"
+            data-label="Buy 1 Month via Instagram">
+        1 Month
+    </button>
+</div>
+
 
         <div class="stock">
             <div class="stock-bar"></div>
@@ -67,10 +87,71 @@
 
 </section>
 
+<!-- PRODUCT DESCRIPTION BOX -->
+<section class="product-desc-section">
+
+    <div class="product-desc-box">
+
+        <button class="desc-toggle">
+            <span class="desc-title">
+              ◈ Product Description – English
+            </span>
+            <span class="arrow">▾</span>
+        </button>
+
+        <div class="desc-content">
+            <ul>
+                <li>✅ <strong>High-Quality Canva Pro</strong> – Premium and legit activation.</li>
+                <li>✅ <strong>No Auto-Claim</strong> – 100% manually added for safety.</li>
+                <li>✅ <strong>Works on Your Own Account</strong> – 100% replacement account.</li>
+                <li>✅ <strong>Check TOS for More Info</strong> – Warranty & refund details included.</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+
 <!-- FOOTER -->
 <footer class="footer">
     <p>&copy; 2026 Delta Market. All Rights Reserved.</p>
 </footer>
+
+<!-- PRICE SWITCH SCRIPT -->
+<script>
+    const priceDisplay = document.getElementById("priceDisplay");
+    const durationButtons = document.querySelectorAll(".duration-btn");
+
+    durationButtons.forEach(button => {
+        button.addEventListener("click", () => {
+
+            // remove active from all
+            durationButtons.forEach(btn => btn.classList.remove("active"));
+
+            // activate clicked
+            button.classList.add("active");
+
+            // update price only
+            priceDisplay.textContent = button.dataset.price;
+        });
+    });
+</script>
+
+<!-- Discription-JS -->
+<script>
+    const descToggleBtn = document.querySelector(".product-desc-box .desc-toggle");
+    const descBox = document.querySelector(".product-desc-box");
+
+    if (descToggleBtn && descBox) {
+        descToggleBtn.addEventListener("click", () => {
+            descBox.classList.toggle("open");
+        });
+    }
+</script>
+
+
 
 </body>
 </html>

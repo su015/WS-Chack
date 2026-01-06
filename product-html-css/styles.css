@@ -8,9 +8,10 @@
 }
 
 body {
-    background: #000;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #000;
     color: #fff;
+    overflow-x: hidden;
 }
 
 /* =========================
@@ -44,6 +45,8 @@ body {
     );
 
     backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
     border-radius: 22px;
     border: 1px solid rgba(168,85,247,0.25);
 
@@ -56,14 +59,12 @@ body {
     z-index: 100;
 }
 
-/* LOGO */
 .logo {
     font-size: 22px;
     font-weight: 600;
     color: #fff;
 }
 
-/* NAV */
 .nav {
     display: flex;
     gap: 28px;
@@ -75,6 +76,7 @@ body {
     border-radius: 14px;
     text-decoration: none;
     font-weight: 500;
+    transition: all 0.25s ease;
 }
 
 .nav a:hover {
@@ -87,11 +89,13 @@ body {
 }
 
 /* =========================
-   PRODUCT CONTAINER
+   PRODUCT CONTAINER — FINAL FIX
 ========================= */
 .delta-product {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 520px) 1fr;
     gap: 30px;
+
     padding: 40px;
     max-width: 1200px;
     margin: 40px auto;
@@ -99,27 +103,28 @@ body {
     background: radial-gradient(circle at top, var(--card-dark), #000);
     border-radius: 20px;
     box-shadow: 0 0 50px rgba(168,85,247,0.3);
+
+    align-items: start; /* 🔥 KEY */
 }
 
+
 /* =========================
-   IMAGE CARD (FINAL PERFECT FIX)
+   IMAGE CARD (FINAL FIX)
 ========================= */
 .delta-image-card {
-    flex: 1;
-    max-width: 520px;
     border-radius: 16px;
     overflow: hidden;
-    background: transparent;       /* 🔥 NO BLACK SPACE */
+    background: transparent;
     box-shadow: 0 0 40px rgba(168,85,247,0.5);
 }
 
-/* IMAGE — NO CUT, NO GAP */
 .delta-image-card img {
     width: 100%;
-    height: auto;                  /* 🔥 IMAGE DEFINES HEIGHT */
-    display: block;                /* 🔥 REMOVES BOTTOM GAP */
+    height: auto;
+    display: block;
     border-radius: 16px;
 }
+
 
 /* =========================
    INFO CARD
@@ -131,11 +136,12 @@ body {
     padding: 25px;
 }
 
-/* TITLE + BADGE */
+/* TITLE */
 .title-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
 }
 
 .title-row h1 {
@@ -155,6 +161,39 @@ body {
     font-weight: bold;
     margin: 15px 0;
     color: var(--cyan);
+}
+
+/* =========================
+   DURATION SELECTOR
+========================= */
+.duration-selector {
+    display: flex;
+    gap: 14px;
+    margin: 14px 0 20px;
+}
+
+.duration-btn {
+    padding: 10px 22px;
+    border-radius: 14px;
+    border: 1px solid rgba(168,85,247,0.4);
+    background: transparent;
+    color: #c084fc;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.duration-btn.active {
+    background: linear-gradient(90deg, var(--purple), var(--pink));
+    color: #fff;
+    box-shadow:
+        0 0 18px rgba(168,85,247,0.7),
+        0 0 35px rgba(236,72,153,0.4);
+}
+
+.duration-btn:hover {
+    transform: translateY(-2px);
 }
 
 /* STOCK */
@@ -189,7 +228,6 @@ body {
     margin-top: 20px;
 }
 
-/* SAME SIZE BUTTON BASE */
 .btn-action {
     min-width: 200px;
     height: 50px;
@@ -234,8 +272,7 @@ body {
 }
 
 /* REMOVE UNDERLINES */
-.actions a,
-.actions a * {
+.actions a {
     text-decoration: none !important;
 }
 
@@ -244,6 +281,90 @@ body {
     margin-top: 15px;
     font-size: 13px;
     color: #facc15;
+}
+
+/* =========================
+   DESCRIPTION BOX
+========================= */
+.product-desc-section {
+    max-width: 1200px;
+    margin: 40px auto 70px;
+    padding: 0 20px;
+}
+
+.product-desc-box {
+    border-radius: 20px;
+    overflow: hidden;
+
+    background: linear-gradient(
+        180deg,
+        rgba(20,10,40,0.65),
+        rgba(5,5,15,0.85)
+    );
+
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(168,85,247,0.25);
+
+    box-shadow:
+        0 0 30px rgba(168,85,247,0.35),
+        inset 0 0 25px rgba(255,255,255,0.03);
+}
+
+.desc-toggle {
+    width: 100%;
+    padding: 18px 22px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.desc-title {
+    background: linear-gradient(90deg, var(--purple), var(--cyan));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.arrow {
+    color: #c084fc;
+    transition: transform 0.3s ease;
+}
+
+.desc-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.45s ease;
+}
+
+.product-desc-box.open .desc-content {
+    max-height: 600px;
+}
+
+.product-desc-box.open .arrow {
+    transform: rotate(180deg);
+}
+
+.desc-content ul {
+    padding: 20px 26px 26px;
+    list-style: none;
+}
+
+.desc-content li {
+    margin-bottom: 14px;
+    font-size: 14.8px;
+    line-height: 1.65;
+    color: #e5e7eb;
+}
+
+.desc-content li strong {
+    color: #fff;
+    font-weight: 600;
 }
 
 /* =========================
@@ -259,11 +380,12 @@ body {
 }
 
 /* =========================
-   MOBILE
+   RESPONSIVE
 ========================= */
 @media (max-width: 900px) {
     .delta-product {
         flex-direction: column;
+        padding: 25px;
     }
 
     .delta-image-card {
@@ -272,10 +394,89 @@ body {
 
     .actions {
         flex-direction: column;
-        align-items: stretch;
     }
 }
 
-.delta-product {
-    align-items: flex-start;
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px 20px;
+    }
+
+    .nav {
+        gap: 16px;
+    }
+
+    .title-row h1 {
+        font-size: 22px;
+    }
+
+    .price {
+        font-size: 26px;
+    }
+
+    .duration-selector {
+        flex-direction: column;
+    }
+
+    .duration-btn,
+    .btn-action {
+        width: 100%;
+    }
+}
+
+@media (max-width: 900px) {
+    .delta-product {
+        grid-template-columns: 1fr;
+        padding: 25px;
+    }
+}
+
+
+
+/* LOGO CONTAINER */
+.logo {
+    display: flex;
+    align-items: center;          /* 🔥 vertical perfect align */
+    gap: 10px;                    /* clean spacing */
+    font-weight: 700;
+    font-size: 24px;              /* base text size */
+}
+
+/* LOGO IMAGE — MATCH TEXT HEIGHT */
+.logo-img {
+    height: 2em;                /* 🔥 KEY: scales with text */
+    width: auto;                  /* keeps ratio */
+    display: block;
+
+    /* soft neon glow */
+    filter:
+        drop-shadow(0 0 6px rgba(236,72,153,0.6))
+        drop-shadow(0 0 12px rgba(168,85,247,0.5));
+}
+
+/* LOGO TEXT */
+.logo span {
+    color: #ffffff;          /* ✅ white text */
+    font-weight: 700;
+    line-height: 1;
+}
+
+
+
+
+/* TABLET */
+@media (max-width: 768px) {
+    .logo {
+        font-size: 22px;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 480px) {
+    .logo {
+        font-size: 20px;
+        gap: 8px;
+    }
 }

@@ -2,11 +2,11 @@
    ROOT VARIABLES
 ========================= */
 :root {
-    --nebula-purple: #a855f7;
-    --nebula-pink: #ec4899;
-    --nebula-cyan: #22d3ee;
-    --nebula-dark: #020617;
-    --nebula-card: #0b0f1a;
+    --purple: #a855f7;
+    --pink: #ec4899;
+    --cyan: #22d3ee;
+    --dark: #020617;
+    --card: #0b0f1a;
 }
 
 /* =========================
@@ -20,49 +20,43 @@
 
 img {
     max-width: 100%;
-    height: auto;
-    display: block; /* removes image bottom gap */
+    display: block;
 }
 
-/* =========================
-   BASE
-========================= */
 body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-    color: #fff;
-    background: linear-gradient(
-        180deg,
-        #020617 0%,
-        #020617 40%,
-        #000000 100%
-    );
+    background: radial-gradient(circle at top, #020617, #000);
+    color: #ffffff;
+    overflow-x: hidden;
 }
 
 /* =========================
-   HEADER
+   HEADER (GLASS)
 ========================= */
 .header {
+    max-width: 1200px;
+    margin: 16px auto;
+    padding: 16px 28px;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    margin: 16px auto;
-    padding: 16px 32px;
-    max-width: 1200px;
-
     background: linear-gradient(
         135deg,
-        rgba(20,10,40,0.8),
-        rgba(10,5,25,0.9),
-        rgba(2,6,23,0.95)
+        rgba(20,10,40,0.85),
+        rgba(10,5,25,0.92),
+        rgba(2,6,23,0.97)
     );
 
     backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
     border-radius: 20px;
     border: 1px solid rgba(168,85,247,0.25);
 
     box-shadow:
-        0 0 35px rgba(168,85,247,0.4),
+        0 0 35px rgba(168,85,247,0.45),
         inset 0 0 20px rgba(0,0,0,0.6);
 
     position: sticky;
@@ -70,35 +64,60 @@ body {
     z-index: 100;
 }
 
+/* =========================
+   LOGO (FINAL – NO BUG)
+========================= */
 .logo {
-    font-size: 20px;
-    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 26px;
+    font-weight: 700;
 }
 
-/* NAV */
+/* ROUND LOGO – IMAGE FILLS FULL */
+.logo-circle {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+
+    background-image: url("logo.png"); /* logo.png must be beside styles.css */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    box-shadow:
+        0 0 20px rgba(236,72,153,0.9),
+        0 0 40px rgba(168,85,247,0.7);
+
+    flex-shrink: 0;
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
 .nav {
     display: flex;
-    gap: 20px;
+    gap: 22px;
 }
 
 .nav a {
     text-decoration: none;
+    color: var(--purple);
     font-weight: 500;
-    color: var(--nebula-purple);
-    padding: 6px 14px;
-    border-radius: 12px;
+    padding: 8px 14px;
+    border-radius: 14px;
+    transition: all 0.25s ease;
 }
 
 .nav a:hover {
-    color: #3b0b57;
-    background: linear-gradient(
-        90deg,
-        var(--nebula-purple),
-        var(--nebula-pink)
-    );
+    color: #fff;
+    background: linear-gradient(90deg, var(--purple), var(--pink));
     box-shadow:
-        0 0 14px rgba(236,72,153,0.8),
-        0 0 25px rgba(168,85,247,0.6);
+        0 0 14px rgba(236,72,153,0.9),
+        0 0 30px rgba(168,85,247,0.7);
+    transform: translateY(-2px);
 }
 
 /* =========================
@@ -114,8 +133,8 @@ body {
 }
 
 .hero p {
-    color: var(--nebula-cyan);
     margin-top: 10px;
+    color: var(--cyan);
 }
 
 /* =========================
@@ -130,17 +149,16 @@ body {
     margin-bottom: 40px;
 }
 
-/* RESPONSIVE GRID */
+/* GRID */
 .products-grid {
+    max-width: 1200px;
+    margin: auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 24px;
-    align-items: start; /* 🔥 prevents stretch bugs */
-    max-width: 1200px;
-    margin: auto;
 }
 
-/* PRODUCT LINK */
+/* LINK RESET */
 .product-link {
     text-decoration: none;
     color: inherit;
@@ -157,15 +175,15 @@ body {
     border-radius: 18px;
     padding: 16px;
     border: 1px solid rgba(168,85,247,0.25);
-    box-shadow: 0 0 22px rgba(0,0,0,0.6);
 
+    box-shadow: 0 0 22px rgba(0,0,0,0.6);
     position: relative;
     overflow: hidden;
 
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* IMAGE (NO CROP, NO GAP) */
+/* IMAGE */
 .product-card img {
     border-radius: 14px;
 }
@@ -184,7 +202,6 @@ body {
     transition: opacity 0.3s ease;
 }
 
-/* HOVER */
 .product-card:hover {
     transform: translateY(-6px);
     box-shadow:
@@ -196,7 +213,7 @@ body {
     opacity: 1;
 }
 
-/* TEXT */
+/* PRODUCT TEXT */
 .product-text {
     margin-top: 14px;
     text-align: left;
@@ -211,11 +228,7 @@ body {
     font-size: 14px;
     font-weight: 600;
 
-    background: linear-gradient(
-        90deg,
-        var(--nebula-purple),
-        var(--nebula-pink)
-    );
+    background: linear-gradient(90deg, var(--purple), var(--pink));
     background-clip: text;
     -webkit-text-fill-color: transparent;
 
@@ -242,22 +255,95 @@ body {
     padding: 20px;
     text-align: center;
     font-size: 14px;
-    background: #000;
     color: #9ca3af;
+    background: #000;
 }
 
 /* =========================
-   MOBILE NAV FIX
+   RESPONSIVE
 ========================= */
 @media (max-width: 768px) {
     .header {
         flex-direction: column;
-        gap: 12px;
-        padding: 16px;
+        gap: 14px;
+        padding: 16px 20px;
     }
 
     .nav {
         flex-wrap: wrap;
         justify-content: center;
+        gap: 16px;
+    }
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .logo-circle {
+        width: 48px;
+        height: 48px;
     }
 }
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 20px;
+    }
+
+    .logo-circle {
+        width: 42px;
+        height: 42px;
+    }
+
+    .nav a {
+        font-size: 14px;
+        padding: 6px 10px;
+    }
+}
+
+/* LOGO CONTAINER */
+.logo {
+    display: flex;
+    align-items: center;          /* 🔥 vertical perfect align */
+    gap: 10px;                    /* clean spacing */
+    font-weight: 700;
+    font-size: 24px;              /* base text size */
+}
+
+/* LOGO IMAGE — MATCH TEXT HEIGHT */
+.logo-img {
+    height: 2em;                /* 🔥 KEY: scales with text */
+    width: auto;                  /* keeps ratio */
+    display: block;
+
+    /* soft neon glow */
+    filter:
+        drop-shadow(0 0 6px rgba(236,72,153,0.6))
+        drop-shadow(0 0 12px rgba(168,85,247,0.5));
+}
+
+/* LOGO TEXT */
+.logo span {
+    color: #ffffff;          /* ✅ white text */
+    font-weight: 700;
+    line-height: 1;
+}
+
+
+
+/* TABLET */
+@media (max-width: 768px) {
+    .logo {
+        font-size: 22px;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 480px) {
+    .logo {
+        font-size: 20px;
+        gap: 8px;
+    }
+}
+
+
