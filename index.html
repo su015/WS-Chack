@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buy Product</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <div class="card">
+    <h2>Buy Product</h2>
+    <p class="sub">Choose platform & payment</p>
+
+    <label>Your Name</label>
+    <input id="name" type="text" placeholder="Enter your name">
+
+    <label>Product Name</label>
+    <input id="product" type="text" placeholder="Enter product name">
+
+    <label>Payment Method</label>
+    <select id="payment">
+      <option value="UPI">UPI</option>
+      <option value="Binance">Binance</option>
+    </select>
+
+    <label>Buy Via</label>
+    <div class="buttons">
+      <button onclick="sendOrder('telegram')">Buy via Telegram</button>
+      <button onclick="sendOrder('discord')">Buy via Discord</button>
+      <button onclick="sendOrder('instagram')">Buy via Instagram</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
